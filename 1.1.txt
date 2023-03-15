@@ -1,0 +1,10 @@
+Script started on 2023-03-15 15:19:38+02:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="129" LINES="35"]
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker psa[K -a
+[?2004lCONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS                     PORTS     NAMES
+5018ac19c967   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 2 minutes ago             eloquent_panini
+a782da432a10   nginx     "/docker-entrypoint.…"   3 minutes ago   Exited (0) 2 minutes ago             epic_lehmann
+b06c7f8dc24b   nginx     "/docker-entrypoint.…"   3 minutes ago   Up 3 minutes               80/tcp    ecstatic_hypatia
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ exit
+[?2004lexit
+
+Script done on 2023-03-15 15:19:44+02:00 [COMMAND_EXIT_CODE="0"]

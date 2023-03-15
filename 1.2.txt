@@ -1,0 +1,15 @@
+Script started on 2023-03-15 15:27:06+02:00 [TERM="xterm-256color" TTY="/dev/pts/4" COLUMNS="129" LINES="35"]
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker ps -a
+[?2004lCONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker images
+[?2004lREPOSITORY             TAG       IMAGE ID       CREATED        SIZE
+hanken8-drupal         latest    ca41bb241402   3 weeks ago    622MB
+solr                   8         6e7a46e78fa2   3 months ago   516MB
+mariadb                10.3      a926ab77a4d9   3 months ago   378MB
+hanken360tour-apache   latest    40475ddec9ee   5 months ago   569MB
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ echo W[K"Comment: in 1.1 I started nginx three times. [K[K snd [K[K[K[Kand stopped them"[K. These are contai ners I use [K and cannot stop [K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kfor development and cannot stop"
+[?2004lComment: in 1.1 I started nginx three times and stopped them. These are containers I use for development and cannot stop
+[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ exit
+[?2004lexit
+
+Script done on 2023-03-15 15:28:12+02:00 [COMMAND_EXIT_CODE="0"]
