@@ -1,5 +1,0 @@
-#build the image (I had removed it earlier)
-docker build . -t sws 
-
-#map it to port 8181
-docker run -p 8181:8080 sws

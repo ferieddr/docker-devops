@@ -209,6 +209,8 @@ RUN go test
 CMD ./server
 ```
 
+Command to build and start
+
 ```shell
 docker build . -t backend
 docker run -p 8080:8080 backend
@@ -255,6 +257,8 @@ RUN npm run build
 RUN npm install -g serve
 CMD ["serve", "-s", "-l", "5000", "build"]
 ```
+
+Commands to build and start
 
 ```shell
 docker build example-frontend/ -t frontend
