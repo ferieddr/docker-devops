@@ -1,2 +1,5 @@
 additional.txt
 script.sh
+tmpdir/*
+Dockerfile
+material-applications/*
