@@ -1,209 +1,21 @@
-Script started on 2023-03-16 13:03:19+02:00 [TERM="xterm-256color" TTY="/dev/pts/0" COLUMNS="120" LINES="30"]
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker pull [7mdevopsdockeruh/simple-web-service:ubuntu[27mdevopsdockeruh/simple-web-service:ubuntu
-[?2004l
-ubuntu: Pulling from devopsdockeruh/simple-web-service
+docker pull mdevopsdockeruh/simple-web-service:ubuntu
+docker pull devopsdockeruh/simple-web-service:alpine
 
-[1A[2K
-5d3b2c2d21bb: Pulling fs layer 
-[1B
-[1A[2K
-3fc2062ea667: Pulling fs layer 
-[1B
-[1A[2K
-75adf526d75b: Pulling fs layer 
-[1B
-[1A[2K
-965d4bbb586a: Pulling fs layer 
-[1B
-[1A[2K
-4f4fb700ef54: Pulling fs layer 
-[1B[2A[2K
-965d4bbb586a: Waiting 
-[2B[1A[2K
-4f4fb700ef54: Waiting 
-[1B[3A[2K
-75adf526d75b: Downloading [==================================================>]     162B/162B
-[3B[3A[2K
-75adf526d75b: Download complete 
-[3B[4A[2K
-3fc2062ea667: Downloading [============================================>      ]     759B/850B
-[4B[5A[2K
-5d3b2c2d21bb: Downloading [>                                                  ]  294.9kB/28.57MB
-[5B[4A[2K
-3fc2062ea667: Downloading [==================================================>]     850B/850B
-[4B[4A[2K
-3fc2062ea667: Verifying Checksum 
-[4B[4A[2K
-3fc2062ea667: Download complete 
-[4B[5A[2K
-5d3b2c2d21bb: Downloading [=======>                                           ]   4.41MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Downloading [===============>                                   ]  8.837MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Downloading [===============================>                   ]  18.23MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Downloading [=======================================>           ]  22.36MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Downloading [==============================================>    ]  26.48MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Downloading [=================================================> ]  28.54MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Verifying Checksum 
-[5B[5A[2K
-5d3b2c2d21bb: Download complete 
-[5B[5A[2K
-5d3b2c2d21bb: Extracting [>                                                  ]  294.9kB/28.57MB
-[5B[2A[2K
-965d4bbb586a: Downloading [>                                                  ]  51.93kB/5.117MB
-[2B[5A[2K
-5d3b2c2d21bb: Extracting [=======>                                           ]  4.424MB/28.57MB
-[5B[2A[2K
-965d4bbb586a: Downloading [=======================>                           ]  2.374MB/5.117MB
-[2B[5A[2K
-5d3b2c2d21bb: Extracting [=============>                                     ]  7.668MB/28.57MB
-[5B[2A[2K
-965d4bbb586a: Verifying Checksum 
-[2B[2A[2K
-965d4bbb586a: Download complete 
-[2B[5A[2K
-5d3b2c2d21bb: Extracting [===================>                               ]  11.21MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Extracting [===========================>                       ]  15.93MB/28.57MB
-[5B[1A[2K
-4f4fb700ef54: Downloading [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Verifying Checksum 
-[1B[1A[2K
-4f4fb700ef54: Download complete 
-[1B[5A[2K
-5d3b2c2d21bb: Extracting [====================================>              ]  20.94MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Extracting [==========================================>        ]  24.18MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Extracting [================================================>  ]  27.43MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Extracting [==================================================>]  28.57MB/28.57MB
-[5B[5A[2K
-5d3b2c2d21bb: Pull complete 
-[5B[4A[2K
-3fc2062ea667: Extracting [==================================================>]     850B/850B
-[4B[4A[2K
-3fc2062ea667: Extracting [==================================================>]     850B/850B
-[4B[4A[2K
-3fc2062ea667: Pull complete 
-[4B[3A[2K
-75adf526d75b: Extracting [==================================================>]     162B/162B
-[3B[3A[2K
-75adf526d75b: Extracting [==================================================>]     162B/162B
-[3B[3A[2K
-75adf526d75b: Pull complete 
-[3B[2A[2K
-965d4bbb586a: Extracting [>                                                  ]  65.54kB/5.117MB
-[2B[2A[2K
-965d4bbb586a: Extracting [=================================================> ]  5.112MB/5.117MB
-[2B[2A[2K
-965d4bbb586a: Extracting [==================================================>]  5.117MB/5.117MB
-[2B[2A[2K
-965d4bbb586a: Pull complete 
-[2B[1A[2K
-4f4fb700ef54: Extracting [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Extracting [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Pull complete 
-[1BDigest: sha256:d44e1dce398732e18c7c2bad9416a072f719af33498302b02929d4c112e88d2a
-Status: Downloaded newer image for devopsdockeruh/simple-web-service:ubuntu
-docker.io/devopsdockeruh/simple-web-service:ubuntu
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker pull [7mdevopsdockeruh/simple-web-service:alpine[27mdevopsdockeruh/simple-web-service:alpine
-[?2004l
-alpine: Pulling from devopsdockeruh/simple-web-service
-
-[1A[2K
-ba3557a56b15: Pulling fs layer 
-[1B
-[1A[2K
-1dace236434b: Pulling fs layer 
-[1B
-[1A[2K
-4f4fb700ef54: Pulling fs layer 
-[1B[1A[2K
-4f4fb700ef54: Downloading [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Verifying Checksum 
-[1B[1A[2K
-4f4fb700ef54: Download complete 
-[1B[3A[2K
-ba3557a56b15: Downloading [>                                                  ]  28.75kB/2.812MB
-[3B[2A[2K
-1dace236434b: Downloading [>                                                  ]  51.93kB/5.117MB
-[2B[3A[2K
-ba3557a56b15: Downloading [==================================>                ]  1.923MB/2.812MB
-[3B[2A[2K
-1dace236434b: Downloading [==================>                                ]  1.903MB/5.117MB
-[2B[2A[2K
-1dace236434b: Verifying Checksum 
-[2B[2A[2K
-1dace236434b: Download complete 
-[2B[3A[2K
-ba3557a56b15: Downloading [===============================================>   ]  2.677MB/2.812MB
-[3B[3A[2K
-ba3557a56b15: Verifying Checksum 
-[3B[3A[2K
-ba3557a56b15: Download complete 
-[3B[3A[2K
-ba3557a56b15: Extracting [>                                                  ]  32.77kB/2.812MB
-[3B[3A[2K
-ba3557a56b15: Extracting [==================================================>]  2.812MB/2.812MB
-[3B[3A[2K
-ba3557a56b15: Pull complete 
-[3B[2A[2K
-1dace236434b: Extracting [>                                                  ]  65.54kB/5.117MB
-[2B[2A[2K
-1dace236434b: Extracting [==================================================>]  5.117MB/5.117MB
-[2B[2A[2K
-1dace236434b: Pull complete 
-[2B[1A[2K
-4f4fb700ef54: Extracting [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Extracting [==================================================>]      32B/32B
-[1B[1A[2K
-4f4fb700ef54: Pull complete 
-[1BDigest: sha256:dd4d367476f86b7d7579d3379fe446ae5dfce25480903fb0966fc2e5257e0543
-Status: Downloaded newer image for devopsdockeruh/simple-web-service:alpine
-docker.io/devopsdockeruh/simple-web-service:alpine
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker image ls
-[?2004l
+docker image ls
 REPOSITORY                          TAG       IMAGE ID       CREATED       SIZE
 devopsdockeruh/simple-web-service   ubuntu    4e3362e907d5   2 years ago   83MB
 devopsdockeruh/simple-web-service   alpine    fd312adc88e0   2 years ago   15.7MB
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker run -d -it --name sws-alpine[C[C[C[C[C[C [7mdevopsdockeruh/simple-web-service:alpin[27m[7me[27m[A
-]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ [C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Cdevopsdockeruh/simple-web-service:alpine
-[?2004l
-450807a25954275a6461f208613ce39f111ea48f5aebca10f2f144700804c891
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ docker ecex[K[K[Kxec -it sws-alpine sh[K[K[K sh
-[?2004l
-/usr/src/app # [6n
-/usr/src/app # [Jtail -f ./text.log
-2023-03-16 11:05:54 +0000 UTC
-2023-03-16 11:05:56 +0000 UTC
+
+docker run -d -it --name sws-alpine devopsdockeruh/simple-web-service:alpine
+
+docker exec -it sws-alpine sh
+tail -f ./text.log
+
 Secret message is: 'You can find the source code here: https://github.com/docker-hy'
 2023-03-16 11:05:58 +0000 UTC
 2023-03-16 11:06:00 +0000 UTC
 2023-03-16 11:06:02 +0000 UTC
 2023-03-16 11:06:04 +0000 UTC
 2023-03-16 11:06:06 +0000 UTC
-Secret message is: 'You can find the source code here: https://github.com/docker-hy'
-2023-03-16 11:06:08 +0000 UTC
-2023-03-16 11:06:10 +0000 UTC
-2023-03-16 11:06:12 +0000 UTC
-2023-03-16 11:06:14 +0000 UTC
-2023-03-16 11:06:16 +0000 UTC
-Secret message is: 'You can find the source code here: https://github.com/docker-hy'
-2023-03-16 11:06:18 +0000 UTC
-^C
-/usr/src/app # [6nexit
-[?2004h]0;ferieddr@SDCH06-17B8LL3: ~/dev/docker-devops[01;32mferieddr@SDCH06-17B8LL3[00m:[01;34m~/dev/docker-devops[00m$ exit
-[?2004l
-exit
 
-Script done on 2023-03-16 13:06:24+02:00 [COMMAND_EXIT_CODE="130"]
+exit

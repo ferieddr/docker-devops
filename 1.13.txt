@@ -12,6 +12,7 @@ RUN go version
 WORKDIR /usr/src/app
 COPY . .
 RUN go build
+RUN go test
 CMD ./server
 
 -
