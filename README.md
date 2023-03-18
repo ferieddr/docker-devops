@@ -267,3 +267,7 @@ docker build example-backend/ -t backend
 docker run -d -p 5000:5000 frontend
 docker run -d -p 8080:8080 backend
 ```
+
+## 1.15
+
+The pushed image can be found at [efernber/angled-name](https://hub.docker.com/repository/docker/efernber/angled-name/general)
