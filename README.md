@@ -150,7 +150,7 @@ docker run -v "$(pwd)/tmpdir/log.txt:/usr/src/app/text.log" devopsdockeruh/simpl
 
 ```shell
 #build the image (I had removed it earlier)
-docker build . -t sws 
+docker build -t sws .
 
 docker run -p 8080:8080 sws
 ```
@@ -212,7 +212,7 @@ CMD ./server
 Command to build and start
 
 ```shell
-docker build . -t backend
+docker build -t backend .
 docker run -p 8080:8080 backend
 ```
 
@@ -297,12 +297,12 @@ CMD ["php", "-S", "0.0.0.0:8282", "-t", "/usr/src/app", "/usr/src/app/index.php"
 ```
 
 1. First, I registered with fly.io using my Github account. I had already pushed my project [angled-name](https://github.com/ferieddr/angled-name) to a repo on Github.
-2. Once logged in I could select my repo from Github and deployt it.
+2. Once logged in I could select my repo from Github and deploy it.
 3. Fly.io starts the Web CLI. I clicked the button "deploy".
 4. It loads a terminal asking questions that are answered with y/N. After entering the app name, unselecting the activations of PostgreSQl and Upstash Redis and finally selecting "deploy now", we are ready to fly.
 5. Fly.io builds the image the same way on your computer and then gives you the URL where the service can be reached.
 
-My service can be reached on [Fly.io](https://angled-name.fly.dev/).
+My service can be reached at Fly.io on [https://angled-name.fly.dev](https://angled-name.fly.dev/).
 
 To angle a name - add the parameter `?name=your-chosen-name` after the URL and press enter.
 
