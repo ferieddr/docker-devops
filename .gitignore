@@ -4,3 +4,5 @@ tmpdir/*
 Dockerfile
 material-applications/*
 *.txt
+log/
+*.*/

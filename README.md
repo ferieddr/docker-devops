@@ -4,7 +4,9 @@
 
 Submissions for the course tasks.
 
-## 1.1
+## Part 1
+
+### 1.1
 
 ```shell
 docker ps -a
@@ -14,7 +16,7 @@ b120a49e1bdf   nginx     "/docker-entrypoint.…"   55 seconds ago   Exited (0) 
 92e3dfe45b83   nginx     "/docker-entrypoint.…"   58 seconds ago   Up 58 seconds               80/tcp    charming_euler
 ```
 
-## 1.2
+### 1.2
 
 ```shell
 docker ps -a
@@ -26,7 +28,7 @@ docker images
 REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
 ```
 
-## 1.3
+### 1.3
 
 ```shell¨
 Secret message is: 'You can find the source code here: https://github.com/docker-hy'
@@ -43,7 +45,7 @@ Secret message is: 'You can find the source code here: https://github.com/docker
 2023-03-15 14:53:33 +0000 UTC
 ```
 
-## 1.4
+### 1.4
 
 In terminal 1:
 
@@ -66,7 +68,7 @@ helsinki.fi
 ```
 Press enter and voilà!
 
-## 1.5
+### 1.5
 
 ```shell
 docker pull mdevopsdockeruh/simple-web-service:ubuntu
@@ -96,7 +98,7 @@ Secret message is: 'You can find the source code here: https://github.com/docker
 2023-03-16 11:06:06 +0000 UTC
 ```
 
-## 1.6
+### 1.6
 
 ```shell
 docker run -it devopsdockeruh/pull_exercise
@@ -108,7 +110,7 @@ You found the correct password. Secret message is:
 exit
 ```
 
-## 1.7
+### 1.7
 
 Dockerfile
 
@@ -122,7 +124,7 @@ COPY script.sh .
 CMD ./script.sh
 ```
 
-## 1.8
+### 1.8
 
 Dockerfile
 
@@ -137,7 +139,7 @@ Command to start server
 docker run web-server
 ```
 
-## 1.9
+### 1.9
 
 ```shell
 mkdir tmpdir
@@ -146,7 +148,7 @@ touch tmpdir/log.txt
 docker run -v "$(pwd)/tmpdir/log.txt:/usr/src/app/text.log" devopsdockeruh/simple-web-service
 ```
 
-## 1.10
+### 1.10
 
 ```shell
 #build the image (I had removed it earlier)
@@ -155,7 +157,7 @@ docker build -t sws .
 docker run -p 8080:8080 sws
 ```
 
-## 1.11
+### 1.11
 
 Dockerfile 
 
@@ -168,7 +170,7 @@ RUN ./mvnw package
 CMD ["java", "-jar", "./target/docker-example-1.1.3.jar"]
 ```
 
-## 1.12
+### 1.12
 
 Dockerfile 
 
@@ -188,7 +190,7 @@ RUN npm install -g serve
 CMD ["serve", "-s", "-l", "5000", "build"]
 ```
 
-## 1.13
+### 1.13
 
 Dockerfile 
 
@@ -216,7 +218,7 @@ docker build -t backend .
 docker run -p 8080:8080 backend
 ```
 
-## 1.14
+### 1.14
 
 Dockerfile (backend)
 
@@ -268,7 +270,7 @@ docker run -d -p 5000:5000 frontend
 docker run -d -p 8080:8080 backend
 ```
 
-## 1.15
+### 1.15
 
 The image pushed to Docker hub can be found at [efernber/angled-name](https://hub.docker.com/repository/docker/efernber/angled-name/general).
 
@@ -284,7 +286,7 @@ To angle a name - add the parameter `?name=your-chosen-name` after the URL and p
 
 Voilà! The name is displayed angled.
 
-## 1.16
+### 1.16
 
 Dockerfile
 
@@ -307,3 +309,387 @@ My service can be reached at Fly.io on [https://angled-name.fly.dev](https://ang
 To angle a name - add the parameter `?name=your-chosen-name` after the URL and press enter.
 
 Voilà! The name is displayed angled.
+
+## Part 2
+
+### 2.1
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  simple-web-service:
+    image: devopsdockeruh/simple-web-service:ubuntu
+    volumes:
+      - ./tmpdir:/usr/src/app/text.log
+    container_name: simple-web-service
+```
+
+### 2.2
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  simple-web-service:
+    image: devopsdockeruh/simple-web-service:ubuntu
+    build: .
+    ports:
+      - 8080:8080
+    command: server
+```
+
+### 2.3
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    container_name: backend
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+```
+
+### 2.4
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+    container_name: backend
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+```
+
+### 2.5
+
+Command to scale correctly
+
+```shell
+docker-compose up --scale compute=2
+```
+
+### 2.6
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: backend
+    depends_on:
+      - redis
+      - postgres
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+    depends_on:
+      - backend
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    container_name: redis
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: postgres
+```
+
+### 2.7
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: backend
+    depends_on:
+      - redis
+      - postgres
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+    depends_on:
+      - backend
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    container_name: redis
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - type: bind
+        source: ./database
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: postgres
+```
+
+### 2.8
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ../../material-applications/example-backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: backend
+    depends_on:
+      - redis
+      - postgres
+      - proxy
+    networks:
+      - proxy-network
+
+  frontend:
+    build: ../../material-applications/example-frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+    depends_on:
+      - backend
+      - proxy
+    networks:
+      - proxy-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    container_name: redis
+    networks:
+      - proxy-network
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - type: bind
+        source: ./database
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: postgres
+    networks:
+      - proxy-network
+
+  proxy:
+    image: nginx:latest
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    container_name: proxy
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    name: proxy-network
+```
+
+### 2.9
+
+Changes done:
+
+**nginx.conf:**  
+Add trailing slashes to both urls in proxy_pass:
+
+* `proxy_pass http://frontend:5000/;`
+* `proxy_pass http://backend:8080/;`
+
+**Frontend Dockerfile:**  
+Change environment variable `REACT_APP_BACKEND` to: `ENV REACT_APP_BACKEND_URL=http://localhost/api/`
+
+**Backend Dockerfile:**  
+Change environment variable `REQUEST_ORIGIN` to: `ENV REQUEST_ORIGIN=http://localhost`
+
+docker-compose.yml
+
+```docker
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - 8080:8080
+    environment:
+      REDIS_HOST: redis
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: backend
+    depends_on:
+      - redis
+      - postgres
+      - proxy
+    networks:
+      - proxy-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - 5000:5000
+    container_name: frontend
+    depends_on:
+      - backend
+      - proxy
+    networks:
+      - proxy-network
+
+  redis:
+    image: redis:latest
+    ports:
+      - 6379:6379
+    command: ["redis-server", "--save", "60", "1", "--loglevel", "warning"]
+    container_name: redis
+    networks:
+      - proxy-network
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - type: bind
+        source: ./database
+        target: /var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DATABASE: postgres
+    container_name: postgres
+    networks:
+      - proxy-network
+
+  proxy:
+    image: nginx:latest
+    volumes:
+      - type: bind
+        source: ./nginx.conf
+        target: /etc/nginx/nginx.conf
+    ports:
+      - 80:80
+    container_name: proxy
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network: 
+    name: proxy-network 
+```
+
+### 2.10
+
+Command for scanning ports
+
+```shell
+docker run -it --rm --network host networkstatic/nmap localhost
+```
+
+Result from when scanning ports
+
+```shell
+Starting Nmap 7.92 ( https://nmap.org ) at 2023-03-23 13:54 UTC
+Nmap scan report for localhost (127.0.0.1)
+Host is up (0.0000020s latency).
+Other addresses for localhost (not scanned): ::1
+Not shown: 998 closed tcp ports (reset)
+PORT    STATE    SERVICE
+80/tcp  filtered http
+111/tcp open     rpcbind
+
+Nmap done: 1 IP address (1 host up) scanned in 1.40 seconds
+```
