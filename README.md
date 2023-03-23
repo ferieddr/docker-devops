@@ -510,7 +510,7 @@ version: '3.8'
 
 services:
   backend:
-    build: ../../material-applications/example-backend
+    build: ./backend
     ports:
       - 8080:8080
     environment:
@@ -528,7 +528,7 @@ services:
       - proxy-network
 
   frontend:
-    build: ../../material-applications/example-frontend
+    build: ./frontend
     ports:
       - 5000:5000
     container_name: frontend
