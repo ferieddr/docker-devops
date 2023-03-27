@@ -710,20 +710,20 @@ It uses the project from 1.16, my angled-name web application.
 
 ### 3.3
 
-Shell script
+Shell script `builder.sh`
 
 ```shell
 #!/bin/sh
 
 repo=$1
-dir=${repo##*/}
 dhub=$2
+# regex to get only last part of url
+dir=${repo##*/}
 
 git clone https://github.com/$repo
 cd $dir
 docker build -t $dhub:latest .
 docker image push $dhub:latest
-echo "Image can be found at: https://hub.docker.com/repository/docker/$dhub"
 echo "All done. Farewell."
 ```
 
@@ -739,20 +739,20 @@ RUN chmod a+x ./builder.sh
 ENTRYPOINT ["./builder.sh"]
 ```
 
-Shell script
+Shell script `builder.sh`
 
 ```shell
 #!/bin/sh
 
 repo=$1
-dir=${repo##*/}
 dhub=$2
+# regex to get only last part of url
+dir=${repo##*/}
 
 git clone https://github.com/$repo
 cd $dir
 docker build -t $dhub:latest .
 echo "$DOCKER_PWD" | docker login --username $DOCKER_USER --password-stdin
 docker image push $dhub:latest
-echo "Image can be found at: https://hub.docker.com/repository/docker/$dhub"
 echo "All done. Farewell."
 ```
