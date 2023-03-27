@@ -693,3 +693,66 @@ PORT    STATE    SERVICE
 
 Nmap done: 1 IP address (1 host up) scanned in 1.40 seconds
 ```
+
+## Part 3
+
+### 3.1
+
+The repo with the configurations can be found at [ferieddr/express-app](https://github.com/ferieddr/express-app).
+
+*I changed the .gitignore to include the docker-compose file and show my code to start the services.*
+
+### 3.2
+
+The repo with the configurations can be found at [ferieddr/angled-name-cicd](https://github.com/ferieddr/angled-name-cicd).
+
+It uses the project from 1.16, my angled-name web application.
+
+### 3.3
+
+Shell script
+
+```shell
+#!/bin/sh
+
+repo=$1
+dir=${repo##*/}
+dhub=$2
+
+git clone https://github.com/$repo
+cd $dir
+docker build -t $dhub:latest .
+docker image push $dhub:latest
+echo "Image can be found at: https://hub.docker.com/repository/docker/$dhub"
+echo "All done. Farewell."
+```
+
+### 3.4
+
+Dockerfile
+
+```docker
+FROM docker:git
+WORKDIR /mydir
+COPY ./builder.sh ./builder.sh
+RUN chmod a+x ./builder.sh
+ENTRYPOINT ["./builder.sh"]
+```
+
+Shell script
+
+```shell
+#!/bin/sh
+
+repo=$1
+dir=${repo##*/}
+dhub=$2
+
+git clone https://github.com/$repo
+cd $dir
+docker build -t $dhub:latest .
+echo "$DOCKER_PWD" | docker login --username $DOCKER_USER --password-stdin
+docker image push $dhub:latest
+echo "Image can be found at: https://hub.docker.com/repository/docker/$dhub"
+echo "All done. Farewell."
+```
