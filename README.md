@@ -112,7 +112,7 @@ exit
 
 ### 1.7
 
-Dockerfile
+Dockerfile:
 
 ```dockerfile
 FROM ubuntu:20.04
@@ -126,14 +126,14 @@ CMD ./script.sh
 
 ### 1.8
 
-Dockerfile
+Dockerfile:
 
 ```dockerfile
 FROM devopsdockeruh/simple-web-service:alpine
 CMD server
 ```
 
-Command to start server
+Command to start server:
 
 ```shell
 docker run web-server
@@ -159,7 +159,7 @@ docker run -p 8080:8080 sws
 
 ### 1.11
 
-Dockerfile 
+Dockerfile:
 
 ```dockerfile
 FROM openjdk:8
@@ -172,7 +172,7 @@ CMD ["java", "-jar", "./target/docker-example-1.1.3.jar"]
 
 ### 1.12
 
-Dockerfile 
+Dockerfile:
 
 ```dockerfile
 FROM ubuntu:20.04
@@ -192,7 +192,7 @@ CMD ["serve", "-s", "-l", "5000", "build"]
 
 ### 1.13
 
-Dockerfile 
+Dockerfile: 
 
 ```dockerfile
 FROM ubuntu:20.04
@@ -211,7 +211,7 @@ RUN go test
 CMD ./server
 ```
 
-Command to build and start
+Command to build and start:
 
 ```shell
 docker build -t backend .
@@ -220,7 +220,7 @@ docker run -p 8080:8080 backend
 
 ### 1.14
 
-Dockerfile (backend)
+Dockerfile (backend):
 
 ```dockerfile
 FROM ubuntu:20.04
@@ -239,7 +239,7 @@ RUN go build
 CMD ./server
 ```
 
-Dockerfile (frontend)
+Dockerfile (frontend):
 
 ```dockerfile
 FROM ubuntu:20.04
@@ -260,7 +260,7 @@ RUN npm install -g serve
 CMD ["serve", "-s", "-l", "5000", "build"]
 ```
 
-Commands to build and start
+Commands to build and start:
 
 ```shell
 docker build example-frontend/ -t frontend
@@ -274,7 +274,7 @@ docker run -d -p 8080:8080 backend
 
 The image pushed to Docker hub can be found at [efernber/angled-name](https://hub.docker.com/repository/docker/efernber/angled-name/general).
 
-Usage
+Usage:
 
 ```shell
 docker run -p 8282:8282 efernber/angled-name
@@ -288,7 +288,7 @@ Voilà! The name is displayed angled.
 
 ### 1.16
 
-Dockerfile
+Dockerfile:
 
 ```dockerfile
 FROM php:7.4-cli
@@ -314,7 +314,7 @@ Voilà! The name is displayed angled.
 
 ### 2.1
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -329,7 +329,7 @@ services:
 
 ### 2.2
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -345,7 +345,7 @@ services:
 
 ### 2.3
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -366,7 +366,7 @@ services:
 
 ### 2.4
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -395,7 +395,7 @@ services:
 
 ### 2.5
 
-Command to scale correctly
+Command to scale correctly:
 
 ```shell
 docker-compose up --scale compute=2
@@ -403,7 +403,7 @@ docker-compose up --scale compute=2
 
 ### 2.6
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -451,7 +451,7 @@ services:
 
 ### 2.7
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -503,7 +503,7 @@ services:
 
 ### 2.8
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -595,7 +595,7 @@ Change environment variable `REACT_APP_BACKEND` to: `ENV REACT_APP_BACKEND_URL=h
 **Backend Dockerfile:**  
 Change environment variable `REQUEST_ORIGIN` to: `ENV REQUEST_ORIGIN=http://localhost`
 
-docker-compose.yml
+docker-compose.yml:
 
 ```docker
 version: '3.8'
@@ -673,13 +673,13 @@ networks:
 
 ### 2.10
 
-Command for scanning ports
+Command for scanning ports:
 
 ```shell
 docker run -it --rm --network host networkstatic/nmap localhost
 ```
 
-Result from when scanning ports
+Result from when scanning ports:
 
 ```shell
 Starting Nmap 7.92 ( https://nmap.org ) at 2023-03-23 13:54 UTC
@@ -710,7 +710,7 @@ It uses the project from 1.16, my angled-name web application.
 
 ### 3.3
 
-Shell script `builder.sh`
+Shell script `builder.sh`:
 
 ```shell
 #!/bin/sh
@@ -729,7 +729,7 @@ echo "All done. Farewell."
 
 ### 3.4
 
-Dockerfile
+Dockerfile:
 
 ```docker
 FROM docker:git
@@ -739,7 +739,7 @@ RUN chmod a+x ./builder.sh
 ENTRYPOINT ["./builder.sh"]
 ```
 
-Shell script `builder.sh`
+Shell script `builder.sh`:
 
 ```shell
 #!/bin/sh
@@ -755,4 +755,199 @@ docker build -t $dhub:latest .
 echo "$DOCKER_PWD" | docker login --username $DOCKER_USER --password-stdin
 docker image push $dhub:latest
 echo "All done. Farewell."
+```
+
+### 3.5
+
+Frontend Dockerfile:
+
+```docker
+FROM ubuntu:20.04
+EXPOSE 5000
+WORKDIR /usr/src/app
+COPY . .
+RUN apt-get update
+RUN apt-get -y install curl
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash
+RUN apt-get update
+RUN apt install -y nodejs
+RUN node -v && npm -v
+RUN npm install
+ENV PORT=5000
+ENV REACT_APP_BACKEND_URL=http://localhost/api/
+RUN npm run build
+RUN npm install -g serve
+
+RUN useradd -m appuser
+USER appuser
+
+CMD ["serve", "-s", "-l", "5000", "build"]
+```
+
+Backend Dockerfile:
+
+```docker
+FROM ubuntu:20.04
+EXPOSE 8080
+RUN apt-get update
+RUN apt-get -y install curl
+RUN curl -sL https://go.dev/dl/go1.16.15.linux-amd64.tar.gz --output go1.16.15.linux-amd64.tar.gz
+RUN rm -rf /usr/local/go
+RUN tar -C /usr/local -xzf go1.16.15.linux-amd64.tar.gz
+ENV PATH=$PATH:/usr/local/go/bin
+RUN go version
+WORKDIR /usr/src/app
+COPY . .
+ENV REQUEST_ORIGIN=http://localhost
+RUN go build
+
+RUN useradd -m appuser
+USER appuser
+
+CMD ./server
+```
+
+*My backend file is based on Ubuntu and not Alpine. These commands would I use if it would be:*
+
+```docker
+[...]
+
+RUN adduser -D appuser
+USER appuser
+
+CMD ./server
+```
+
+### 3.6
+
+Initial size of images:
+
+```shell
+docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED      SIZE
+frontend     latest    66a1c151f80e   9 days ago   617MB
+backend      latest    a6554abc5282   9 days ago   792MB
+```
+
+Reduced size of images:
+
+```shell
+docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+frontend     latest    8b21684d98cc   34 seconds ago   616MB
+backend      latest    66cf06028077   5 minutes ago    663MB
+```
+
+### 3.7
+
+Initial size of images (based on Ubuntu):
+
+```shell
+docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+frontend     latest    8b21684d98cc   34 seconds ago   616MB
+backend      latest    66cf06028077   5 minutes ago    663MB
+```
+
+Reduced size of images (based on Alpine):
+
+```shell
+docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+frontend      latest    7b963977507a   2 minutes ago   466MB
+backend       latest    b1ac249d0145   5 minutes ago   645MB
+```
+
+### 3.8
+
+Frontend Dockerfile:
+
+```docker
+FROM node:16-alpine as frontend-stage1
+WORKDIR /usr/src/app
+COPY . .
+RUN npm install
+RUN npm run build
+
+FROM node:16-alpine
+ENV REACT_APP_BACKEND_URL=http://localhost/api/
+WORKDIR /usr/src/app/
+COPY --from=frontend-stage1 /usr/src/app/ .
+RUN npm install -g serve
+CMD ["serve", "-s", "-l", "5000", "build"]
+```
+
+Size of the built image:
+
+```shell
+docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED              SIZE
+frontend      latest    89b06494d661   6 minutes ago        129MB
+```
+
+### 3.9
+
+Backend Dockerfile:
+
+```docker
+FROM golang:1.16.15-alpine as backend-stage1
+WORKDIR /usr/src/app
+COPY . .
+RUN go mod download && go mod verify
+RUN go build -ldflags "-s -w"
+
+FROM alpine:3.14
+ENV REQUEST_ORIGIN=http://localhost
+WORKDIR /usr/src/app
+COPY --from=backend-stage1 /usr/src/app/server/ .
+CMD ./server
+```
+
+Size of built image:
+
+```shell
+docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+backend      latest    9ef698886af1   7 seconds ago   18.7MB
+```
+
+### 3.10
+
+I chose to work with [angled-name project](https://github.com/ferieddr/angled-name). 
+
+Initial Dockerfile:
+
+```docker
+FROM php:7.4-cli
+EXPOSE 8282
+WORKDIR /usr/src/app
+COPY ./src .
+CMD ["php", "-S", "0.0.0.0:8282", "-t", "/usr/src/app", "/usr/src/app/index.php"]
+```
+
+Size of this image when built:
+
+```shell
+docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+angled-name   latest    4a3193a11e66   2 hours ago    474MB
+```
+
+Optimised version of the Dockerfile:
+
+```docker
+FROM alpine
+WORKDIR /usr/src/app
+COPY ./src .
+RUN apk add --no-cache php && adduser -D userapp
+USER userapp
+CMD ["php", "-S", "0.0.0.0:8282", "-t", "/usr/src/app", "/usr/src/app/index.php"]
+```
+
+Size of this image when built:
+
+```shell
+docker image ls
+REPOSITORY    TAG       IMAGE ID       CREATED         SIZE
+angled-name   latest    60dd506831a8   6 seconds ago   18.4MB
 ```
